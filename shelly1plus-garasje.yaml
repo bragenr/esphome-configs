@@ -38,14 +38,14 @@ ota:
 
 switch:
   - platform: gpio
-    pin: GPIO4
+    pin: GPIO26
     name: "Garasjedør Rele"
     id: relay
     internal: true
 
 binary_sensor:
   - platform: gpio
-    pin: GPIO5
+    pin: GPIO4
     name: "Garasjedør Kontakt"
     id: contact_sensor
     internal: true
@@ -80,3 +80,14 @@ sensor:
     update_interval: 60s
   - platform: uptime
     name: ${device_name} "Uptime"
+  - platform: adc
+    name: "${device_name} Relay Supply Voltage"
+    pin: GPIO33
+    attenuation: 11db
+    filters:
+      - multiply: 8
+
+status_led:
+  pin:
+    number: GPIO0
+    inverted: true
